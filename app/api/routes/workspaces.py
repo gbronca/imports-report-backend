@@ -1,8 +1,10 @@
 from fastapi import APIRouter
 
+from ...core.monday import monday_client
+
 router = APIRouter()
 
 
 @router.get("/")
-def read_workspaces():
-    return [{"name": "Workspace 1"}, {"name": "Workspace 2"}]
+async def read_workspaces():
+    return await monday_client.workspaces.fetch_workspaces()
